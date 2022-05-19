@@ -7,3 +7,10 @@
 .App > div {
   margin-right: 50px;
 }
+.error{
+  color: red;
+}
+.errorInput{
+  border-color: red;
+}
+
