@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from "./Todolist";
 
@@ -7,21 +7,18 @@ export type taskType={
 }
 
 function App() {
-    const tasks1=[
+    const [tasks, setTasks]=useState([
         {id:1,titleTask:'HTML',isDone:false},
         {id:2,titleTask:'CSS',isDone:false},
         {id:3,titleTask:'REact',isDone:true},
-    ]
-    const tasks2=[
-        {id:1,titleTask:'222HTML',isDone:true},
-        {id:2,titleTask:'222CSS',isDone:false},
-        {id:3,titleTask:'222REact',isDone:false},
-    ]
+    ])
+    const removeTask=(id:number)=>{
+        setTasks(tasks.filter(el=>el.id!==id))
+    }
 
     return (
         <div className="App">
-           <Todolist title={'What to learn'} tasks={tasks1}/>
-           <Todolist title={'What to buy'} tasks={tasks2}/>
+           <Todolist title={'What to learn'} tasks={tasks} removeTask={removeTask}/>
         </div>
     );
 }
