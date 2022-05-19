@@ -30,6 +30,9 @@ function App() {
     const addTask=(value:string)=>{
         setTasks([{id:v1(),titleTask:value,isDone:false},...tasks])
     }
+    const changeCheckBox=(id:string,status:boolean)=>{
+        setTasks(tasks.map(el=>el.id===id ?{...el,isDone:status}:el))
+    }
 
     return (
         <div className="App">
@@ -39,6 +42,7 @@ function App() {
                removeTask={removeTask}
                setFilter={setFilter}
                addTask={addTask}
+               changeCheckBox={changeCheckBox}
            />
         </div>
     );
