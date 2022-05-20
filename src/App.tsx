@@ -10,6 +10,9 @@ export type filterType = 'all' | 'active' | 'completed'
 export type todolistType = {
     todolistId: string, titleTodolist: string, filter: filterType
 }
+type assothiathionArray={
+    [key:string]:taskType[]
+}
 
 function App() {
     const todolistId1 = v1()
@@ -18,7 +21,7 @@ function App() {
         {todolistId: todolistId1, titleTodolist: 'What study', filter: 'all'},
         {todolistId: todolistId2, titleTodolist: 'What buy', filter: 'all'},
     ])
-    const [tasks, setTasks] = useState({
+    const [tasks, setTasks] = useState<assothiathionArray>({
         [todolistId1]: [
             {id: v1(), titleTask: 'HTML', isDone: false},
             {id: v1(), titleTask: 'HTML', isDone: true},
