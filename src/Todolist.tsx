@@ -29,7 +29,6 @@ export const Todolist: React.FC<propsType> = ({title, tasks,removeTask,...props}
         props.removeTodolist(props.todolistId)
     }
     const addTaskHandler=(value:string)=>{
-        console.log(value)
         props.addTask(props.todolistId,value)
     }
 
