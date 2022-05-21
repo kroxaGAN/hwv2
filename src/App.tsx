@@ -41,8 +41,8 @@ function App() {
         // setTasks(tasks.filter(el => el.id !== id))
     }
 
-    const addTask = (value: string) => {
-        // setTasks([{id: v1(), titleTask: value, isDone: false}, ...tasks])
+    const addTask = (todolistId:string,value: string) => {
+        setTasks({...tasks,[todolistId]:[{id: v1(), titleTask: value, isDone: false},...tasks[todolistId]]})
     }
     const changeCheckBox = (id: string, status: boolean) => {
         // setTasks(tasks.map(el => el.id === id ? {...el, isDone: status} : el))
