@@ -15,6 +15,7 @@ type propsType = {
     changeFilterTodolist:(todolistId:string,filter:filterType)=>void
     removeTodolist:(todolistId: string)=>void
     changeTodoTitle:(todolistId: string,newTitle:string)=>void
+    changeTaskTitle:(todolistId: string, taskId:string, newTitle:string)=>void
 }
 
 export const Todolist: React.FC<propsType> = ({title, tasks,removeTask,...props}) => {
@@ -36,27 +37,21 @@ export const Todolist: React.FC<propsType> = ({title, tasks,removeTask,...props}
     const changeTodoTitleHandler=(newTitle:string)=>{
         props.changeTodoTitle(props.todolistId,newTitle)
     }
+    const editTaskHandler=(taskId:string,newTitle:string)=>{
+        props.changeTaskTitle(props.todolistId,taskId,newTitle)
+    }
 
     return (
         <div>
             <EditableSpan title={title} callback={changeTodoTitleHandler}/>
             <button onClick={removeTodoHandler}>XXX</button>
             <AddItemForm callback={addTaskHandler}/>
-            {/*<div>*/}
-            {/*    <input onChange={inputChangeHandler}*/}
-            {/*           value={inputValue}*/}
-            {/*           onKeyPress={addEnterHandler}*/}
-            {/*           className = {error ? 'errorInput':''}*/}
-            {/*    />*/}
-            {/*    <button onClick={inputButtonHandler} >+</button>*/}
-            {/*    {error && <div className={'error'}>error</div>}*/}
-            {/*</div>*/}
             <ul>
                 {
                     tasks.map(el => {
                             return <li key={el.id}>
                                 <input type="checkbox" checked={el.isDone} onChange={(e)=>changeCheckBoxHandler(e,el.id)}/>
-                                <span>{el.titleTask}</span>
+                                <EditableSpan title={el.titleTask} callback={(newTitle)=>editTaskHandler(el.id,newTitle)}/>
                                 <button onClick={()=>deleteButtonHandler(el.id)}>DEL</button>
                             </li>
                         }
