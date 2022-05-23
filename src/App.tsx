@@ -60,6 +60,9 @@ function App() {
         setTodolists([{todolistId: todolistId, titleTodolist: value, filter: 'all'},...todolists])
         setTasks({[todolistId]:[],...tasks})
     }
+    const changeTodoTitle=(todolistId: string, newTitle:string)=>{
+        setTodolists(todolists.map(el=>el.todolistId===todolistId ?{...el,titleTodolist:newTitle}:el))
+    }
 
     return (
         <div className="App">
@@ -85,6 +88,7 @@ function App() {
                             changeCheckBox={changeCheckBox}
                             changeFilterTodolist={changeFilterTodolist}
                             removeTodolist={removeTodolist}
+                            changeTodoTitle={changeTodoTitle}
                         />
                     }
                 )
