@@ -37,16 +37,15 @@ function App() {
             {id: v1(), titleTask: 'REact222', isDone: true},
         ]
     })
-    // const [filter, setFilter] = useState<filterType>('all')
-    const removeTask = (id: string) => {
-        // setTasks(tasks.filter(el => el.id !== id))
+    const removeTask = (todolistId: string,id: string) => {
+        setTasks({...tasks,[todolistId]:tasks[todolistId].filter(el=>el.id!==id)})
     }
 
     const addTask = (todolistId:string,value: string) => {
         setTasks({...tasks,[todolistId]:[{id: v1(), titleTask: value, isDone: false},...tasks[todolistId]]})
     }
-    const changeCheckBox = (id: string, status: boolean) => {
-        // setTasks(tasks.map(el => el.id === id ? {...el, isDone: status} : el))
+    const changeCheckBox = (todolistId:string,id: string, status: boolean) => {
+        setTasks({...tasks,[todolistId]:tasks[todolistId].map(el=>el.id===id ?{...el,isDone:status}:el )})
     }
     const changeFilterTodolist = (todolistId: string, filter: filterType) => {
         setTodolists(todolists.map(el=>el.todolistId===todolistId ? {...el,filter:filter}:el))
