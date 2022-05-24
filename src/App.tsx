@@ -59,9 +59,9 @@ function App() {
         setTodolists([{todolistId: todolistId, titleTodolist: value, filter: 'all'},...todolists])
         setTasks({...tasks,[todolistId]:[]})
     }
-    // const changeTaskTitle=(todolistId:string,id: string,title:string)=>{
-    //     setTasks({...tasks,[todolistId]:tasks[todolistId].map(el=>el.id===id ?{...el,titleTask:title}:el)})
-    // }
+    const changeTaskTitle=(todolistId:string,id: string,title:string)=>{
+        setTasks({...tasks,[todolistId]:tasks[todolistId].map(el=>el.id===id ?{...el,titleTask:title}:el)})
+    }
     const changeTodoTitle=(todolistId:string,title: string)=>{
         setTodolists(todolists.map(el=>el.todolistId===todolistId?{...el,titleTodolist:title}:el))
     }
@@ -91,7 +91,7 @@ function App() {
                             changeCheckBox={changeCheckBox}
                             changeFilterTodolist={changeFilterTodolist}
                             removeTodolist={removeTodolist}
-                            // changeTaskTitle={changeTaskTitle}
+                            changeTaskTitle={changeTaskTitle}
                             changeTodoTitle={changeTodoTitle}
                         />
                     }
