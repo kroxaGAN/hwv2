@@ -2,6 +2,7 @@ import React, {KeyboardEvent, ChangeEvent, useState, ChangeEventHandler} from "r
 import {filterType, taskType} from "./App";
 import './App.css';
 import {AddItemForm} from "./Components/AddItemForm";
+import {EditableSpan} from "./Components/EditableSpan";
 
 type propsType = {
     title: string
@@ -12,6 +13,8 @@ type propsType = {
     todolistId: string
     changeFilterTodolist: (todolistId: string, filter: filterType) => void
     removeTodolist: (todolistId: string) => void
+    // changeTaskTitle:(todolistId: string,id: string,title:string)=>void
+    changeTodoTitle:(todolistId: string,title:string)=>void
 }
 
 export const Todolist: React.FC<propsType> = ({title, tasks, removeTask, ...props}) => {
@@ -30,12 +33,14 @@ export const Todolist: React.FC<propsType> = ({title, tasks, removeTask, ...prop
     const addTaskHandler = (value: string) => {
         props.addTask(props.todolistId, value)
     }
-
+    const changeTitleHandler = (title:string) => {
+        props.changeTodoTitle(props.todolistId,title)
+    }
 
     return (
         <div>
-
-            <h3>{title}</h3>
+            <EditableSpan title={title} callback={changeTitleHandler}/>
+            {/*<h3>{title}</h3>*/}
             <button onClick={removeTodoHandler}>del todo</button>
             <AddItemForm callback={addTaskHandler}/>
             {/*<div>*/}
