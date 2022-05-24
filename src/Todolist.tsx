@@ -29,14 +29,13 @@ export const Todolist: React.FC<propsType> = ({title, tasks,removeTask,...props}
         props.removeTodolist(props.todolistId)
     }
     const addTaskHandler=(value:string)=>{
-        console.log(value)
         props.addTask(props.todolistId,value)
     }
 
     return (
         <div>
             <h3>{title}</h3>
-            <button onClick={removeTodoHandler}>XXX</button>
+            <button onClick={removeTodoHandler}>del todo</button>
             <AddItemForm callback={addTaskHandler}/>
             {/*<div>*/}
             {/*    <input onChange={inputChangeHandler}*/}
