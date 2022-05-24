@@ -6,34 +6,36 @@ import {AddItemForm} from "./Components/AddItemForm";
 type propsType = {
     title: string
     tasks: taskType[]
-    removeTask:(id:string)=>void
+    removeTask: (id: string) => void
     // setFilter:(filter:filterType)=>void
-    addTask:(todolistId:string,value:string)=>void
-    changeCheckBox:(id:string,status:boolean)=>void
-    todolistId:string
-    changeFilterTodolist:(todolistId:string,filter:filterType)=>void
-    removeTodolist:(todolistId: string)=>void
+    addTask: (todolistId: string, value: string) => void
+    changeCheckBox: (id: string, status: boolean) => void
+    todolistId: string
+    changeFilterTodolist: (todolistId: string, filter: filterType) => void
+    removeTodolist: (todolistId: string) => void
 }
 
-export const Todolist: React.FC<propsType> = ({title, tasks,removeTask,...props}) => {
-    const deleteButtonHandler=(id:string)=>{
+export const Todolist: React.FC<propsType> = ({title, tasks, removeTask, ...props}) => {
+    const deleteButtonHandler = (id: string) => {
         removeTask(id)
     }
-    const filterButtonHandler=(filterValue:filterType)=>{
-        props.changeFilterTodolist(props.todolistId,filterValue)
+    const filterButtonHandler = (filterValue: filterType) => {
+        props.changeFilterTodolist(props.todolistId, filterValue)
     }
-    const changeCheckBoxHandler=(e:ChangeEvent<HTMLInputElement>,id:string)=>{
-        props.changeCheckBox(id,e.currentTarget.checked)
+    const changeCheckBoxHandler = (e: ChangeEvent<HTMLInputElement>, id: string) => {
+        props.changeCheckBox(id, e.currentTarget.checked)
     }
-    const removeTodoHandler=()=>{
+    const removeTodoHandler = () => {
         props.removeTodolist(props.todolistId)
     }
-    const addTaskHandler=(value:string)=>{
-        props.addTask(props.todolistId,value)
+    const addTaskHandler = (value: string) => {
+        props.addTask(props.todolistId, value)
     }
+
 
     return (
         <div>
+
             <h3>{title}</h3>
             <button onClick={removeTodoHandler}>del todo</button>
             <AddItemForm callback={addTaskHandler}/>
@@ -50,18 +52,19 @@ export const Todolist: React.FC<propsType> = ({title, tasks,removeTask,...props}
                 {
                     tasks.map(el => {
                             return <li key={el.id}>
-                                <input type="checkbox" checked={el.isDone} onChange={(e)=>changeCheckBoxHandler(e,el.id)}/>
+                                <input type="checkbox" checked={el.isDone}
+                                       onChange={(e) => changeCheckBoxHandler(e, el.id)}/>
                                 <span>{el.titleTask}</span>
-                                <button onClick={()=>deleteButtonHandler(el.id)}>DEL</button>
+                                <button onClick={() => deleteButtonHandler(el.id)}>DEL</button>
                             </li>
                         }
                     )
                 }
             </ul>
             <div>
-                <button onClick={()=>filterButtonHandler('all')}>All</button>
-                <button onClick={()=>filterButtonHandler('active')}>Active</button>
-                <button onClick={()=>filterButtonHandler('completed')}>Completed</button>
+                <button onClick={() => filterButtonHandler('all')}>All</button>
+                <button onClick={() => filterButtonHandler('active')}>Active</button>
+                <button onClick={() => filterButtonHandler('completed')}>Completed</button>
             </div>
         </div>
     )

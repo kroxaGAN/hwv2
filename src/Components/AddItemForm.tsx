@@ -12,6 +12,7 @@ export const AddItemForm: React.FC<PropsType>=({callback})=>{
     }
     const onClickHandler = () => {
       callback(inputValue)
+        setInputValue('')
     }
     const keyPressHandler=(e:KeyboardEvent<HTMLInputElement>)=>{
         if (e.key === 'Enter'){
@@ -21,7 +22,7 @@ export const AddItemForm: React.FC<PropsType>=({callback})=>{
 
     return(
         <div>
-            <input onChange={onChangeHandler} onKeyPress={keyPressHandler}/>
+            <input onChange={onChangeHandler} onKeyPress={keyPressHandler} value={inputValue}/>
             <button onClick={onClickHandler}>+</button>
         </div>
     )
